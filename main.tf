@@ -33,7 +33,8 @@ resource "aws_iam_role_policy_attachment" "this" {
 }
 
 module "vault_role" {
-  source = "github.com/ptonini/terraform-vault-aws-role?ref=v1"
+  source = "ptonini/aws-role/vault"
+  version = "~> 1.0.0"
   count = var.vault_role != null ? 1 : 0
   name = var.vault_role
   credential_type = var.vault_credential_type
