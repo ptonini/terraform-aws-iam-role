@@ -21,13 +21,3 @@ resource "aws_iam_role_policy_attachment" "this" {
   role       = aws_iam_role.this.id
   policy_arn = each.value
 }
-
-module "vault_role" {
-  source          = "ptonini/aws-role/vault"
-  version         = "~> 1.0.0"
-  count           = var.vault_role != null ? 1 : 0
-  name            = var.vault_role
-  credential_type = var.vault_credential_type
-  backend         = var.vault_backend
-  role_arns       = [aws_iam_role.this.arn]
-}
